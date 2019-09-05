@@ -26,10 +26,12 @@ Right now the script is able to:
 
   **3. Scrcpy**  
     We recommend scrcpy for adb and opening the phone's screen.  
-    You can download the files [here](https://github.com/Genymobile/scrcpy)  
+    - You can download the files [here](https://github.com/Genymobile/scrcpy)  
     Make sure to download the windows zip files and put them in the scrcpy folder.  
-    **Adb and scrcpy should be accessable from:**  
-    \PhoneManagement\scrcpy\adb.exe  
+    Adb and scrcpy should be accessable from:
+    ```bash
+    \PhoneManagement\scrcpy\adb.exe
+    ```
 
 **4. Making a shortcut to start the script from anywhere (Optional)**  
 Windows:
