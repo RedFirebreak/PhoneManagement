@@ -10,16 +10,13 @@ Right now the script is able to:
  - **rebooting** (PMM can reboot all of the connected devices)
  - **Device info** (PMM can check device info like temperature and cpu speed)
 
-
  ### Windows
  Right now this script is designed for windows 10 and to be run with powershell
-
 
  ### Setup/configuration
  **1. Config file**  
  - Copy config.example.ini to config.ini and fill out the WorkDirectory setting
  - (example: WorkDirectory=C:\PhoneManagement)
- 
 
  **2. Devices file**  
  - Copy devices.example.csv to devices.csv and fill out like below:
@@ -27,15 +24,13 @@ Right now the script is able to:
  **Please make sure the csv file uses "," as the delimiter.**  
  - (You can also change this when opening the file with a text editor.)  
 
-
   **3. Scrcpy**
     We recommend scrcpy for adb and opening the phone's screen.  
-    You can download the files [here]
-
-    [here]: https://github.com/Genymobile/scrcpy
-
+    You can download the files [here]  
     Make sure to download the windows zip files and put them in the scrcpy folder.
     Adb and scrcpy should be accessable from \PhoneManagement\scrcpy\adb.exe  
+
+    [here]: https://github.com/Genymobile/scrcpy
 
 
 **4. Making a shortcut to start the script from anywhere (Optional)**  
