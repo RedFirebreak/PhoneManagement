@@ -29,7 +29,7 @@ Right now the script is able to:
     - You can download the files [here](https://github.com/Genymobile/scrcpy)  
     Make sure to download the windows zip files and put them in the scrcpy folder.  
     Adb and scrcpy should be accessable from:
-    ```bash
+    ```
     \PhoneManagement\scrcpy\adb.exe
     ```
 
