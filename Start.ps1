@@ -18,7 +18,7 @@ function Show-Menu
      param (
            [string]$Title = 'Phone Management Menu'
      )
-     Clear-Host
+     #Clear-Host
      Write-Host "PMM -" $h.Get_Item("Version")
      Write-Host 'ALPHA STATE'
      Write-Host 'Config File:' $h.Get_Item("State")
