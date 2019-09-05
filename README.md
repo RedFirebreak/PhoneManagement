@@ -24,14 +24,12 @@ Right now the script is able to:
  **Please make sure the csv file uses "," as the delimiter.**  
  - (You can also change this when opening the file with a text editor.)  
 
-  **3. Scrcpy**
+  **3. Scrcpy**  
     We recommend scrcpy for adb and opening the phone's screen.  
-    You can download the files [here]  
-    Make sure to download the windows zip files and put them in the scrcpy folder.
-    Adb and scrcpy should be accessable from \PhoneManagement\scrcpy\adb.exe  
-
-    [here]: https://github.com/Genymobile/scrcpy
-
+    You can download the files [here](https://github.com/Genymobile/scrcpy)
+    Make sure to download the windows zip files and put them in the scrcpy folder.  
+    **Adb and scrcpy should be accessable from:**  
+    \PhoneManagement\scrcpy\adb.exe  
 
 **4. Making a shortcut to start the script from anywhere (Optional)**  
 Windows:
