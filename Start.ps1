@@ -2,7 +2,6 @@
 Clear-Host
 
 #Do some fancy coloring
-$host.PrivateData.ErrorBackgroundColor = "DarkMagenta"
 $host.UI.RawUI.ForegroundColor = "DarkGreen"
 $host.UI.RawUI.BackgroundColor = "Black"
 
@@ -18,7 +17,6 @@ function Show-Menu
      param (
            [string]$Title = 'Phone Management Menu'
      )
-     #Clear-Host
      Write-Host "PMM -" $h.Get_Item("Version")
      Write-Host 'ALPHA STATE'
      Write-Host 'Config File:' $h.Get_Item("State")
@@ -28,7 +26,7 @@ function Show-Menu
      Write-Host "1: Press '1' for Connecting to all the devices "
      Write-Host "2: Press '2' for scrcpy on all devices"
      Write-Host "3: Press '3' for a reboot on all devices"
-     Write-Host "4: Press '4' for install of new app on all devices "
+     Write-Host "4: Press '4' for install of"$h.Get_Item("AppInstall")"on all devices "
      Write-Host "5: Press '5' for info on all devices (Temp, CPU)"
      Write-Host "6: Press '6' individual management "
 
@@ -55,6 +53,7 @@ do
             Clear-Host
                     Clear-Host
                     Write-Host 'Controlling all connected devices'
+                    Get-Location
                     Write-Host ' '
                     Invoke-Expression './scripts/ControlAllv2.ps1'
                     Write-Host ' '
