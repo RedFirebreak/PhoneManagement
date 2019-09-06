@@ -13,7 +13,7 @@ Right now the script is able to:
  ### Windows
  Right now this script is designed for windows 10 and to be run with powershell.
 
- ### Setup/configuration
+ # Setup/configuration
  **1. Config file**  
  - Copy config.example.ini to config.ini and fill out the WorkDirectory setting.
  - (example: WorkDirectory=C:\PhoneManagement)
