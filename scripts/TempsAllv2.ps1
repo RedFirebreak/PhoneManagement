@@ -8,7 +8,7 @@ foreach ($device in $devices ) {
 
     $deviceconnect = $IP + ':' + $Port
 
-    Write-Output "Restarting $Name ($deviceconnect)"
+    Write-Output "[INFO] $Name ($deviceconnect)"
     Write-Output "CPU: ";.\scrcpy\adb.exe -s $deviceconnect shell "cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq"
     Write-Output "TEMP: "; .\scrcpy\adb.exe -s $deviceconnect shell "cat /sys/devices/virtual/thermal/thermal_zone0/temp"
     Write-Output '*'

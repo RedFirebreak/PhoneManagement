@@ -11,7 +11,22 @@
      Clear-Host
 
      # Getting config file list
-     Get-Content "./config/config.ini" | foreach-object -begin {$h=@{}} -process { $k = [regex]::split($_,'='); if(($k[0].CompareTo("") -ne 0)-and ($k[0].StartsWith("[") -ne $True)) { $h.Add($k[0], $k[1]) } }
+     if (Test-Path -Path "./config/config.ini") {
+          Get-Content "./config/config.ini" | foreach-object -begin {$h=@{}} -process { $k = [regex]::split($_,'='); if(($k[0].CompareTo("") -ne 0)-and ($k[0].StartsWith("[") -ne $True)) { $h.Add($k[0], $k[1]) } }
+       } Else {
+          Write-Host "Yikes! It looks like I can't find the config file. Please check if the config file exist and your path's are correctly set."
+          Pause
+          Exit
+       }
+
+     #checking if the devices file has been made
+     if (Test-Path -Path "./config/devices.csv") {
+          Write-Host "[V] Devices file found"
+       } Else {
+          Write-Host "Yikes! It looks like I can't find the devices file. Please check if the devices file exist and your path's are correctly set in the config."
+          Pause
+          Exit
+       }
 
      # Setting the work directory from config
      Set-Location $h.Get_Item("WorkDirectory")
@@ -34,7 +49,7 @@ function Show-Menu
      Write-Host "3: Press '3' for a reboot on all devices"
      Write-Host "4: Press '4' for install of"$h.Get_Item("AppInstall")"on all devices "
      Write-Host "5: Press '5' for info on all devices (Temp, CPU)"
-     Write-Host "6: WIP WIP Press '6' individual management "
+     Write-Host "6: Press '6' individual management "
 
      Write-Host " "
      Write-Host "Q: Press 'Q' to quit."
@@ -53,18 +68,14 @@ do
                     Invoke-Expression './scripts/ConnectAllv2.ps1'
                     Write-Host ' '
                     Write-Host 'Done! Please check for any errors'
-                    
-
            } '2' {
             Clear-Host
                     Clear-Host
                     Write-Host 'Controlling all connected devices'
-                    Get-Location
                     Write-Host ' '
                     Invoke-Expression './scripts/ControlAllv2.ps1'
                     Write-Host ' '
                     Write-Host 'Done! Please check for any errors'
-                    
            } '3' {
                     Clear-Host
                     Write-Host 'Rebooting all connected devices'
@@ -72,7 +83,6 @@ do
                     Invoke-Expression './scripts/RestartAllv2.ps1'
                     Write-Host ' '
                     Write-Host 'Done! Please check for any errors'
-               
            } '4' {
                     Clear-Host
                     Write-Host 'Installing' $h.Get_Item("AppInstall") 'all connected devices'
@@ -85,6 +95,12 @@ do
                     Write-Host 'Checking temps on all connected devices'
                     Write-Host ' '
                     Invoke-Expression './scripts/TempsAllv2.ps1'
+                    Write-Host ' '
+                    Write-Host 'Done! Please check for any errors'
+
+          } '6' {
+                    Clear-Host
+                    Invoke-Expression './scripts/PhoneSelector.ps1'
                     Write-Host ' '
                     Write-Host 'Done! Please check for any errors'
           
