@@ -3,9 +3,10 @@
      $host.UI.RawUI.ForegroundColor = "DarkGreen"
      $host.UI.RawUI.BackgroundColor = "Black"
 
-     # Starting the adb service if it isn't started yet
+     # Since we starting, make sure its gone
+     .\scrcpy\adb.exe kill-server
+     # Starting the adb service
      .\scrcpy\adb.exe devices -l > $null
-     # Checking how many devices are connected right now
 
      # Always start with a clean slate
      Clear-Host
@@ -43,14 +44,14 @@ function Show-Menu
      Write-Host "================ Phone Management Menu ================"
      Write-Host "Connected devices:"$adbdevicescheck
      Write-Host ""
-    
-     Write-Host "1: Press '1' for Connecting to all the devices "
-     Write-Host "2: Press '2' for scrcpy on all devices"
-     Write-Host "3: Press '3' for a reboot on all devices"
-     Write-Host "4: Press '4' for install of"$h.Get_Item("AppInstall")"on all devices "
-     Write-Host "5: Press '5' for info on all devices (Temp, CPU)"
-     Write-Host "6: Press '6' individual management "
-
+     Write-Host "1: Press '1' individual management "
+     Write-Host ""
+     Write-Host "[WARNING]: The following options will be for ALL of your specified devices"
+     Write-Host "2: Press '2' for Connecting to all the devices "
+     Write-Host "3: Press '3' for scrcpy on all devices [WILL SPAM POWERSHELL]"
+     Write-Host "4: Press '4' for a reboot on all devices"
+     Write-Host "5: Press '5' for install of"$h.Get_Item("AppInstall")"on all devices "
+     Write-Host "6: Press '6' for info on all devices (Temp, CPU)"
      Write-Host " "
      Write-Host "Q: Press 'Q' to quit."
 }
@@ -61,14 +62,20 @@ do
      $input = Read-Host "Please make a selection"
      switch ($input)
      {
-           '1' {
-            Clear-Host
+          '1' {
+               Clear-Host
+               Invoke-Expression './scripts/DeviceSelector.ps1'
+               Write-Host ' '
+               Write-Host 'Done! Please check for any errors'
+     
+          }'2' {
+                    Clear-Host
                     Write-Host 'Connecting to all the devices'
                     Write-Host ' '
                     Invoke-Expression './scripts/ConnectAllv2.ps1'
                     Write-Host ' '
                     Write-Host 'Done! Please check for any errors'
-           } '2' {
+           } '3' {
             Clear-Host
                     Clear-Host
                     Write-Host 'Controlling all connected devices'
@@ -76,21 +83,21 @@ do
                     Invoke-Expression './scripts/ControlAllv2.ps1'
                     Write-Host ' '
                     Write-Host 'Done! Please check for any errors'
-           } '3' {
+           } '4' {
                     Clear-Host
                     Write-Host 'Rebooting all connected devices'
                     Write-Host ' '
                     Invoke-Expression './scripts/RestartAllv2.ps1'
                     Write-Host ' '
                     Write-Host 'Done! Please check for any errors'
-           } '4' {
+           } '5' {
                     Clear-Host
                     Write-Host 'Installing' $h.Get_Item("AppInstall") 'all connected devices'
                     Write-Host ' '
                     Invoke-Expression './scripts/InstallAppAllv2.ps1'
                     Write-Host ' '
                     Write-Host 'Done! Please check for any errors'
-           } '5' {
+           } '6' {
                     Clear-Host
                     Write-Host 'Checking temps on all connected devices'
                     Write-Host ' '
@@ -98,14 +105,11 @@ do
                     Write-Host ' '
                     Write-Host 'Done! Please check for any errors'
 
-          } '6' {
-                    Clear-Host
-                    Invoke-Expression './scripts/PhoneSelector.ps1'
-                    Write-Host ' '
-                    Write-Host 'Done! Please check for any errors'
-          
-           } 'q' {
-                return
+          } 'q' {
+                #Proper ending of the script, closing everything nicely :)
+                    .\scrcpy\adb.exe disconnect
+                    .\scrcpy\adb.exe kill-server
+                    stop-process -Id $PID
            }
      }
 
@@ -113,3 +117,8 @@ do
 
 }
 until ($input -eq 'q')
+
+#Proper ending of the script, closing everything nicely :)
+\scrcpy\adb.exe disconnect
+\scrcpy\adb.exe kill-server
+exit

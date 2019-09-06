@@ -1,5 +1,5 @@
 # PhoneManagement
-This little powershell application will help you manage your phones better with the help of adb (and scrcpy).
+This little powershell application will help you manage your devices better with the help of adb (and scrcpy).
 
 ![screenshot](assets/menu.png)
 
@@ -25,7 +25,7 @@ Right now the script is able to:
  - (You can also change this when opening the file with a text editor.)  
 
   **3. Scrcpy**  
-    We recommend scrcpy for adb and opening the phone's screen.  
+    We recommend scrcpy for adb and opening the device's screen.  
     - You can download the files [here](https://github.com/Genymobile/scrcpy)  
     Make sure to download the windows zip files and put them in the scrcpy folder.  
     **Adb and scrcpy** should be accessable from:
