@@ -1,6 +1,7 @@
 #Make sure nothing is connected to prevent errors
 .\scrcpy\adb.exe disconnect
 Start-Sleep -s 2
+Clear-Host
 
 $devices = Import-Csv -Path ".\config\devices.csv"
 foreach ($device in $devices ) {

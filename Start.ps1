@@ -1,27 +1,32 @@
-# Always start with a clean slate
-Clear-Host
+#Doing checks:
+     #Do some fancy coloring for dramatic effect
+     $host.UI.RawUI.ForegroundColor = "DarkGreen"
+     $host.UI.RawUI.BackgroundColor = "Black"
 
-#Do some fancy coloring
-$host.UI.RawUI.ForegroundColor = "DarkGreen"
-$host.UI.RawUI.BackgroundColor = "Black"
+     # Starting the adb service if it isn't started yet
+     .\scrcpy\adb.exe devices > $null
+     # Checking how many devices are connected right now
+     $adbdevicecheck = .\scrcpy\adb.exe devices -l | find "device product" | measure-object -line | Select-Object -ExpandProperty Lines
 
-# Getting config file list
-Get-Content "./config/config.ini" | foreach-object -begin {$h=@{}} -process { $k = [regex]::split($_,'='); if(($k[0].CompareTo("") -ne 0)-and ($k[0].StartsWith("[") -ne $True)) { $h.Add($k[0], $k[1]) } }
+     # Always start with a clean slate
+     Clear-Host
 
-# Setting the work directory from config
-Set-Location $h.Get_Item("WorkDirectory")
+     # Getting config file list
+     Get-Content "./config/config.ini" | foreach-object -begin {$h=@{}} -process { $k = [regex]::split($_,'='); if(($k[0].CompareTo("") -ne 0)-and ($k[0].StartsWith("[") -ne $True)) { $h.Add($k[0], $k[1]) } }
+
+     # Setting the work directory from config
+     Set-Location $h.Get_Item("WorkDirectory")
 
 # Start!
 function Show-Menu
 {
-     param (
-           [string]$Title = 'Phone Management Menu'
-     )
      Write-Host "PMM -" $h.Get_Item("Version")
      Write-Host 'ALPHA STATE'
      Write-Host 'Config File:' $h.Get_Item("State")
 
-     Write-Host "================ $Title ================"
+     Write-Host "================ Phone Management Menu ================"
+     Write-Host "Connected devices:" $adbdevicecheck
+     Write-Host ""
     
      Write-Host "1: Press '1' for Connecting to all the devices "
      Write-Host "2: Press '2' for scrcpy on all devices"
