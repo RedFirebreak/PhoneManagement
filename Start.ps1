@@ -4,9 +4,8 @@
      $host.UI.RawUI.BackgroundColor = "Black"
 
      # Starting the adb service if it isn't started yet
-     .\scrcpy\adb.exe devices > $null
+     .\scrcpy\adb.exe devices -l > $null
      # Checking how many devices are connected right now
-     $adbdevicecheck = .\scrcpy\adb.exe devices -l | find "device product" | measure-object -line | Select-Object -ExpandProperty Lines
 
      # Always start with a clean slate
      Clear-Host
@@ -20,12 +19,14 @@
 # Start!
 function Show-Menu
 {
+     $adbdevicescheck = .\scrcpy\adb.exe devices -l | find "device product" | measure-object -line | Select-Object -ExpandProperty Lines
+     Clear-Host
      Write-Host "PMM -" $h.Get_Item("Version")
      Write-Host 'ALPHA STATE'
      Write-Host 'Config File:' $h.Get_Item("State")
 
      Write-Host "================ Phone Management Menu ================"
-     Write-Host "Connected devices:" $adbdevicecheck
+     Write-Host "Connected devices:"$adbdevicescheck
      Write-Host ""
     
      Write-Host "1: Press '1' for Connecting to all the devices "
@@ -33,7 +34,7 @@ function Show-Menu
      Write-Host "3: Press '3' for a reboot on all devices"
      Write-Host "4: Press '4' for install of"$h.Get_Item("AppInstall")"on all devices "
      Write-Host "5: Press '5' for info on all devices (Temp, CPU)"
-     Write-Host "6: Press '6' individual management "
+     Write-Host "6: WIP WIP Press '6' individual management "
 
      Write-Host " "
      Write-Host "Q: Press 'Q' to quit."
