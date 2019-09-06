@@ -60,13 +60,16 @@ Before you can start managing your devices, you need to connect to your devices 
 **2. Using scrcpy to view screens**  
 scrcpy is used for viewing your devices screens, if you downloaded scrcpy and put it in the right place, you will be able to view all of your connected screens.  
 **WARNING:** This will open a flood of powershell windows, especially with many devices this can lag your computer for a bit.  
+
 **3. Rebooting all of your devices**  
 Usefull. After connecting will go by each device and send a reboot signal.  
+
 **4. Installing an app**  
 This one is usefull for pushing a new app to all devices. To push an app:
  - Download the apk from the app and place it in the ``\PhoneManagement`` directory
  - Go to your config.ini and fill in only exact name of the apk (including .apk)
- - Start PMM, now you can use the install app setting  
+ - Start PMM, now you can use the install app setting.
+
 **5. Getting info of all devices**  
 Handy for checking temperature and cpu speed.  
 
