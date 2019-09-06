@@ -67,7 +67,8 @@
                     Clear-Host
                         Write-Host 'Installing' $h.Get_Item("AppInstall") 'all connected devices'
                         .\scrcpy\adb.exe -s $specifieddeviceconnect install -r $h.Get_Item("AppInstall")
-                        Write-Host 'Returning to device menu'
+                        Write-Host 'PMM is done installing, check above for any errors'
+                        pause
                         Start-Sleep -s 2
             } '4' {
                     Clear-Host

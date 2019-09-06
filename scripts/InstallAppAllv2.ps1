@@ -18,5 +18,8 @@ foreach ($device in $devices ) {
 }
 #Done with the loopyloop, inform user and exit:)
 Start-Sleep -s 2
+Write-Output "PMM is done sending signals to all phones for the app install"
+Write-Output "Please check for any errors"
+Pause
 Clear-Host
 Write-Output "Done! Exiting ConnectAll"
