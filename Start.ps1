@@ -4,7 +4,7 @@
      $host.UI.RawUI.BackgroundColor = "Black"
 
      # Since we starting, make sure its gone
-     .\scrcpy\adb.exe kill-server
+     .\scrcpy\adb.exe kill-server > $null
      # Starting the adb service
      .\scrcpy\adb.exe devices -l > $null
 
@@ -46,7 +46,7 @@ function Show-Menu
      Write-Host ""
      Write-Host "1: Press '1' individual management "
      Write-Host ""
-     Write-Host "[WARNING]: The following options will be for ALL of your specified devices"
+     Write-Host "[WARNING]: The following options will be for ALL of your specified devices" -ForegroundColor Red
      Write-Host "2: Press '2' for Connecting to all the devices "
      Write-Host "3: Press '3' for scrcpy on all devices [WILL SPAM POWERSHELL]"
      Write-Host "4: Press '4' for a reboot on all devices"

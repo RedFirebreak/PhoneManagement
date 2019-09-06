@@ -82,6 +82,7 @@
                         Write-Output "Reminder: 38000 temp = 38 Degrees"
                     pause
             } 'q' {
+            .\scrcpy\adb.exe disconnect
             return
             }
         }
@@ -92,7 +93,3 @@
         Write-Host "Yikes! It looks like I can't find that device. Please try again"
         Pause
     }
-Clear-Host
-Write-Output "Done! Returning"
-Start-Sleep -s 0.5
-return
